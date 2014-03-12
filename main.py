@@ -52,8 +52,10 @@ class Quorks(TorrentProvider):
                     entry = entry[0].find_all('a')
                     details = entry[0]
                     release_name = details['title']
-                    if self.conf('ignore_year'):
-                        release_name = release_name + '(' + str(movie['library']['year']) + ')'
+                    if self.conf('ignore_year') and not str(movie['library']['year']) in release_name:
+                        words = title.replace(':','').split()
+                        index = release_name.find(words[-1] if words[-1] != 'the' else words[-2]) + len(words[-1] if words[-1] != 'the' else words[-2]) +1
+                        release_name = release_name[0:index] + '.(' + str(movie['library']['year']) + ').' + release_name[index:]
                     link = entry[0]
                     url = entry[1]
                     seed = result.find_all('b')
