@@ -1,4 +1,4 @@
-[url]from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup
 from couchpotato.core.helpers.encoding import tryUrlencode
 from couchpotato.core.helpers.variable import tryInt
 from couchpotato.core.logger import CPLog
@@ -17,7 +17,7 @@ class Quorks(TorrentProvider):
         'login_check': 'https://quorks.net/index.php',
         'detail' : 'https://quorks.net/details.php?id=%s',
         'search' : 'https://quorks.net/browse.php?c%d=%d&search=%s&dead=active',
-        'download' : 'https://quorks.net/downloadhttps.php/%s',
+        'download' : 'https://quorks.net/%s',
     }
 
     cat_ids = [
@@ -57,7 +57,7 @@ class Quorks(TorrentProvider):
                         index = release_name.find(words[-1] if words[-1] != 'the' else words[-2]) + len(words[-1] if words[-1] != 'the' else words[-2]) +1
                         release_name = release_name[0:index] + '.(' + str(movie['library']['year']) + ').' + release_name[index:]
                     link = entry[0]
-                    url = entry[1]
+                    url = entry[2] # 1 is torrent file, 2 is MagnetLink.
                     seed = result.find_all('b')
                     seeders = [item for item in seed if 'seeders' in item.find('a')['href']]
                     num_seeders = 0
@@ -91,4 +91,4 @@ class Quorks(TorrentProvider):
     def loginSuccess(self, output):
         return 'logout.php' in output.lower() or 'Willkommen zur&uuml;ck' in output.lower()
 
-    loginCheckSuccess = loginSuccess[/url]
+    loginCheckSuccess = loginSuccess
