@@ -52,10 +52,14 @@ class Quorks(TorrentProvider):
                     entry = entry[0].find_all('a')
                     details = entry[0]
                     release_name = details['title']
-                    if self.conf('ignore_year') and not str(movie['library']['year']) in release_name:
-                        words = title.replace(':','').split()
+                    words = title.replace(':','').split()
+                    if self.conf('ignore_year'):
                         index = release_name.find(words[-1] if words[-1] != 'the' else words[-2]) + len(words[-1] if words[-1] != 'the' else words[-2]) +1
-                        release_name = release_name[0:index] + '.(' + str(movie['library']['year']) + ').' + release_name[index:]
+                        index2 = index + 7
+                        if not str(movie['library']['year']) in release_name[index:index2]:
+                            release_name = release_name[0:index] + '.(' + str(movie['library']['year']) + ').' + release_name[index:]
+                    if 'the' not in release_name and (words[-1] == 'the' or words[0] == 'the'):
+                        release_name = 'the.' + release_name
                     link = entry[0]
                     url = entry[2] # 1 is torrent file, 2 is MagnetLink.
                     seed = result.find_all('b')
