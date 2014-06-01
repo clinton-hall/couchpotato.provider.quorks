@@ -1,6 +1,6 @@
 from .main import Quorks
 
-def start():
+def autoload():
     return Quorks()
 
 config = [{
