@@ -10,7 +10,7 @@ config = [{
             'tab': 'searcher',
             'list': 'torrent_providers',
             'name': 'Quorks',
-            'description': 'See <a href="https://quorks.net">Quorks</a>',
+            'description': 'See <a href="https://quorks.to">Quorks</a>',
             'wizard': True,
             'options': [
                 {
