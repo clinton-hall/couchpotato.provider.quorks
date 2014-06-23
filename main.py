@@ -12,12 +12,12 @@ log = CPLog(__name__)
 class Quorks(TorrentProvider):
 
     urls = {
-        'test' : 'https://quorks.net',
-        'login' : 'https://quorks.net/takelogin.php',
-        'login_check': 'https://quorks.net/index.php',
-        'detail' : 'https://quorks.net/details.php?id=%s',
-        'search' : 'https://quorks.net/browse.php?c%d=%d&search=%s&dead=active',
-        'download' : 'https://quorks.net/%s',
+        'test' : 'https://quorks.to',
+        'login' : 'https://quorks.to/takelogin.php',
+        'login_check': 'https://quorks.to/index.php',
+        'detail' : 'https://quorks.to/details.php?id=%s',
+        'search' : 'https://quorks.to/browse.php?c%d=%d&search=%s&dead=active',
+        'download' : 'https://quorks.to/%s',
     }
 
     cat_ids = [
