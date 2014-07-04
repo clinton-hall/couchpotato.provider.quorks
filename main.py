@@ -61,7 +61,11 @@ class Quorks(TorrentProvider):
                     if 'the' not in release_name.lower() and (words[-1] == 'the' or words[0] == 'the'):
                         release_name = 'the.' + release_name
                     link = entry[0]
-                    url = entry[2] # 1 is torrent file, 2 is MagnetLink.
+                    try:
+                        url = entry[2] # 1 is torrent file, 2 is MagnetLink.
+                    except:
+                        log.debug('Quorks release %s found without MagnetLink. Ignoring', (release_name))
+                        continue
                     seed = result.find_all('b')
                     seeders = [item for item in seed if 'seeders' in item.find('a')['href']]
                     num_seeders = 0
