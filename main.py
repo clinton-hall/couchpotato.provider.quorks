@@ -31,6 +31,8 @@ class Quorks(TorrentProvider):
 
     def _searchOnTitle(self, title, movie, quality, results):
 
+        log.debug('Searching Quorks for %s' % (title))
+
         url = self.urls['search'] % (self.getCatId(quality['identifier'])[0], self.getCatId(quality['identifier'])[0], 'title:"' + title.replace(':', '') + '"')
         data = self.getHTMLData(url)
 
@@ -64,7 +66,7 @@ class Quorks(TorrentProvider):
                     try:
                         url = entry[2] # 1 is torrent file, 2 is MagnetLink.
                     except:
-                        log.debug('Quorks release %s found without MagnetLink. Ignoring', (release_name))
+                        log.debug('Quorks release %s found without MagnetLink. Ignoring' % (release_name))
                         continue
                     seed = result.find_all('b')
                     seeders = [item for item in seed if 'seeders' in item.find('a')['href']]
@@ -87,7 +89,7 @@ class Quorks(TorrentProvider):
                     })
 
             except:
-                log.error('Failed to parsing %s: %s', (self.getName(), traceback.format_exc()))
+                log.error('Failed to parse Quorks: %s' % (traceback.format_exc()))
 
     def getLoginParams(self):
         return {
