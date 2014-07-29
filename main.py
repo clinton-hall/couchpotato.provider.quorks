@@ -92,6 +92,7 @@ class Quorks(TorrentProvider):
                 log.error('Failed to parse Quorks: %s' % (traceback.format_exc()))
 
     def getLoginParams(self):
+        log.debug('Getting login params for Quorks')
         return {
             'username': self.conf('username'),
             'password': self.conf('password'),
@@ -99,6 +100,7 @@ class Quorks(TorrentProvider):
         }
 
     def loginSuccess(self, output):
+        log.debug('Checking login success for Quorks: %s' % ('True' if ('logout.php' in output.lower() or 'Willkommen zur&uuml;ck' in output.lower()) else 'False'))
         return 'logout.php' in output.lower() or 'Willkommen zur&uuml;ck' in output.lower()
 
     loginCheckSuccess = loginSuccess
