@@ -14,7 +14,7 @@ class Quorks(TorrentProvider, MovieProvider):
 
     urls = {
         'test' : 'https://quorks.to',
-        'login' : 'https://quorks.to/login.php',
+        'login' : 'https://quorks.to/takelogin.php',
         'login_check': 'https://quorks.to/index.php',
         'detail' : 'https://quorks.to/details.php?id=%s',
         'search' : 'https://quorks.to/browse.php?c%d=%d&search=%s&dead=active',
