@@ -13,7 +13,7 @@ class Quorks(TorrentProvider):
 
     urls = {
         'test' : 'https://quorks.to',
-        'login' : 'https://quorks.to/takelogin.php',
+        'login' : 'https://quorks.to/login.php',
         'login_check': 'https://quorks.to/index.php',
         'detail' : 'https://quorks.to/details.php?id=%s',
         'search' : 'https://quorks.to/browse.php?c%d=%d&search=%s&dead=active',
@@ -33,7 +33,7 @@ class Quorks(TorrentProvider):
 
         log.debug('Searching Quorks for %s' % (title))
 
-        url = self.urls['search'] % (self.getCatId(quality['identifier'])[0], self.getCatId(quality['identifier'])[0], title.replace(':', ''))
+        url = self.urls['search'] % (self.getCatId(quality['identifier'])[0], self.getCatId(quality['identifier'])[0], 'title:"' + title.replace(':', '') + '"')
         data = self.getHTMLData(url)
 
         log.debug('Received data from Quorks')
