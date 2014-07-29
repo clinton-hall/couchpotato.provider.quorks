@@ -3,13 +3,14 @@ from couchpotato.core.helpers.encoding import tryUrlencode
 from couchpotato.core.helpers.variable import tryInt
 from couchpotato.core.logger import CPLog
 from couchpotato.core.media._base.providers.torrent.base import TorrentProvider
+from couchpotato.core.media.movie.providers.base import MovieProvider
 import traceback
 
 
 log = CPLog(__name__)
 
 
-class Quorks(TorrentProvider):
+class Quorks(TorrentProvider, MovieProvider):
 
     urls = {
         'test' : 'https://quorks.to',
