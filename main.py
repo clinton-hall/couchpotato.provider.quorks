@@ -59,8 +59,8 @@ class Quorks(TorrentProvider, MovieProvider):
                     if self.conf('ignore_year'):
                         index = release_name.lower().find(words[-1] if words[-1] != 'the' else words[-2]) + len(words[-1] if words[-1] != 'the' else words[-2]) +1
                         index2 = index + 7
-                        if not str(movie['library']['year']) in release_name[index:index2]:
-                            release_name = release_name[0:index] + '(' + str(movie['library']['year']) + ').' + release_name[index:]
+                        if not str(movie['info']['year']) in release_name[index:index2]:
+                            release_name = release_name[0:index] + '(' + str(movie['info']['year']) + ').' + release_name[index:]
                     if 'the' not in release_name.lower() and (words[-1] == 'the' or words[0] == 'the'):
                         release_name = 'the.' + release_name
                     link = entry[0]
