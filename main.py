@@ -34,7 +34,7 @@ class Quorks(TorrentProvider, MovieProvider):
 
         log.debug('Searching Quorks for %s' % (title))
 
-        url = self.urls['search'] % (self.getCatId(quality), self.getCatId(quality), 'title:"' + title.replace(':', '') + '"')
+        url = self.urls['search'] % (self.getCatId(quality)[0], self.getCatId(quality)[0], 'title:"' + title.replace(':', '') + '"')
         data = self.getHTMLData(url)
 
         log.debug('Received data from Quorks')
